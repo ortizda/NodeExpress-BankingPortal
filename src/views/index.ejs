@@ -1,7 +1,8 @@
-<%-header.ejs%>
+<%- include('header') %>
 <div class="container">
-    <h1><%=title%></h1>
+    <h1><%= title %></h1>
     <a url="/profile">Profile</a>
-    <a url="/transfer">Transfer</a>
 </div>
-<%-footer.ejs%>
+    <br>
+    <a url="/transfer">Transfer</a>
+<%- include('footer') %>    
