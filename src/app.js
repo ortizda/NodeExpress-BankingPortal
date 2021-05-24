@@ -2,12 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const express = require('express')
 
-const accountData,
-      accounts,
-      userData,
-      users
-      
-
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -15,44 +9,39 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname,'public')));
 
-fs.readFileSync(('src/json/accounts.json'), () =>
-    accountData,    
-    accounts = JSON.parse(accountData)
-);
+const accountData = fs.readFileSync(path.join(__dirname, 'json', 'accounts.json'), 'utf8');  
+const accounts = JSON.parse(accountData);
 
-fs.readFileSync(('src/json/users.json'), () =>
-    userData,    
-    userss = JSON.parse(userData)
+const userData = fs.readFileSync(path.join(__dirname, 'json', 'users.json'), 'utf8');
+const users = JSON.parse(userData);
+
+app.get('/',(req,res) => 
+    res.render('index',
+        {title: 'Account Summary', accounts: accounts}
+    )
 );
 
 app.get('/savings',(req,res) =>
     res.render('account',
-        {accounts: accounts.savings}
+        {account: accounts.savings}
     )
 );
 
 app.get('/checking',(req,res) =>
     res.render('account',
-        {accounts: accounts.checking}
+        {account: accounts.checking}
     )
 );
 
 app.get('/credit',(req,res) =>
     res.render('account',
-        {accounts: accounts.credit}
+        {account: accounts.credit}
     )
 );
 
 app.get('/profile', (req, res) =>
-    res.render('account',
+    res.render('profile',
         {user: users[0]}
-
-    )
-);
-
-app.get('/',(req,res) => 
-    res.render('Account Summary', 
-        { accounts: accounts }
     )
 );
 
