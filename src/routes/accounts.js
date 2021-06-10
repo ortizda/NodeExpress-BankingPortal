@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const data = require('');
+
 const { accounts } = require('../data.js');
 
 router.get('/savings',(req,res) =>
@@ -21,6 +21,4 @@ router.get('/credit',(req,res) =>
     )
 );
 
-module.exports = {
-    router
-}
+module.exports = router;

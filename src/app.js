@@ -3,7 +3,7 @@ const path = require('path');
 const express = require('express')
 const { accounts, users, writeJSON } = require('./data.js')
 const accountRoutes = require('./routes/accounts.js')
-const servicesRoutes = require('./routes/accounts.js')
+const servicesRoutes = require('./routes/services.js')
 
 const app = express();
 
@@ -20,6 +20,7 @@ app.get('/',(req,res) =>
 );
 
 app.use('/account', accountRoutes);
+app.use('/services', servicesRoutes);
 
 app.get('/profile', (req, res) =>
     res.render('profile',
@@ -27,7 +28,7 @@ app.get('/profile', (req, res) =>
     )
 );
 
-app.use('/services', servicesRoutes);
+
 
 app.listen(3000, () =>
     console.log('PS Project Running on port 3000!')
